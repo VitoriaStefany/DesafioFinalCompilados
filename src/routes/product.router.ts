@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import UserController from '../app/controller/UserController';
+import ProductController from '../app/controller/ProductController';
 import createValidation from '../app/validations/user/create';
 
 const router = Router();
 
-router.post('/user', createValidation, UserController.create);
+router.post('/api/v1/product', createValidation, ProductController.create); 
 
 export default router;
