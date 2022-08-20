@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Date, Schema } from 'mongoose';
 
 export interface IProduct {
   title: string
@@ -19,7 +19,4 @@ export interface IProductResponse {
   qtd_stock: number
   bar_codes: string
   _id: Schema.Types.ObjectId
-  created_at: string
-  update_at: string
-  __v?: number
 }
