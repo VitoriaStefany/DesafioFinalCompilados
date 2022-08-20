@@ -10,9 +10,12 @@ const schema = new Schema<IProduct>({
   price: {type: Number, required: true},
   qtd_stock: {type: Number, required: true},
   bar_codes: {type: String, required: true, unique: true}
-});
+},
+{
+  timestamps: {createdAt: 'created_at', updatedAt: 'update_at'}
+}
+);
 
 const Product = model<IProduct, PaginateModel<IProduct>>('Product', schema);
 
 export default Product;
-
