@@ -3,6 +3,24 @@ import {Request, Response} from 'express'
 import ProductService from '../service/ProductService';
 
 class ProductController {
+  public async get (req: Request, res: Response): Promise<Response> {
+    try {
+      const {page, ...body} = req.query
+      const limit = parseInt(req.body.limit);
+
+      const result = await ProductService.get(body, page || 1, limit || 50)
+      return res.status(200).json(result)
+    } catch (error: any) {
+      return res.status(error.statusCode || 400).json({
+        message: error.name,
+        details: [
+          {message: error.message}
+        ]
+      })
+    }
+  }
+
+
   public async create (req: Request, res: Response): Promise<Response> {
     try {
       const payload: IProduct = req.body
