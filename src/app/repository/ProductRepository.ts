@@ -8,6 +8,10 @@ class ProductRepository {
     return ProductSchema.paginate(payload, {limit, page, customLabels})
   }
 
+  public async getById (id: string) {
+    return ProductSchema.findById(id)
+  }
+
   async create (payload: IProduct) {
     return ProductSchema.create(payload);
   }
