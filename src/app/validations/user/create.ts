@@ -10,10 +10,11 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       brand: Joi.string().required(),
       price: Joi.number().required().greater(0.01),
       qtd_stock: Joi.number().required(),
+      stock_control_enabled: Joi.boolean().required(),
       bar_codes: Joi.string().required()
     })
 
-    const { error } = await schema.validate(req.body, { abortEarly: true });
+    const { error } = schema.validate(req.body, { abortEarly: true });
     if (error) throw error;
     return next();
   } catch (error: any) {
