@@ -28,6 +28,23 @@ class ProductService {
 
     return result;
   }
+
+  public async updatePut (id: string, payload: IProduct) {
+    if(!Types.ObjectId.isValid(id)) throw new BadRequestError('Product id is not valid')
+    if(Object.keys(payload).length === 0) throw new BadRequestError('No body')
+    
+    const foundProduct = await ProductRepository.getById(id)
+    
+    if (!foundProduct) {
+      throw new NotFoundError('Product not found')
+    }
+    
+    const result = await ProductRepository.updatePut(id, payload)
+
+    if(!result) throw new BadRequestError('Product not update')
+
+    return result
+  }
 }
 
 export default new ProductService();

@@ -16,6 +16,9 @@ class ProductRepository {
     return ProductSchema.create(payload);
   }
 
+  public async updatePut (ProductId:string, Payload: IProduct) {
+    return ProductSchema.findByIdAndUpdate(ProductId, Payload, {new: true}).select('-tock_control_enabled').select('-bar_codes').select('-_id').select(-'timestamps')
+  }
 }
 
 export default new ProductRepository();
