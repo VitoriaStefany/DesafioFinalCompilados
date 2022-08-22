@@ -49,6 +49,22 @@ class ProductController {
       })
     }
   }
+
+  public async updatePut (req: Request, res: Response): Promise<Response> {
+    try {
+      const _id = req.params.id
+      const payload: IProduct = req.body
+      const result = await ProductService.updatePut(_id, payload)
+      return res.status(200).json(result)
+    } catch (error: any) {
+      return res.status(error.statusCode || 500).json({
+        message: error.name,
+        details: [
+          {message: error.message}
+        ]
+      })
+    }
+  }
 }
 
 export default new ProductController();

@@ -10,7 +10,6 @@ export interface IProduct {
   stock_control_enabled: boolean
   bar_codes: string
 }
-
 export interface IProductResponse {
   title: string
   description: string
