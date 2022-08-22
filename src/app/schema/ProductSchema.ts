@@ -1,5 +1,5 @@
 import { Schema, model, PaginateModel } from 'mongoose';
-import { paginate } from 'mongoose-paginate-v2';
+import paginate from 'mongoose-paginate-v2';
 import { IProduct } from '../interfaces/IProduct';
 
 const schema = new Schema<IProduct>({
@@ -9,12 +9,15 @@ const schema = new Schema<IProduct>({
   brand: {type: String, required: true},
   price: {type: Number, required: true},
   qtd_stock: {type: Number, required: true},
+  stock_control_enabled: {type: Boolean, required: false},
   bar_codes: {type: String, required: true, unique: true}
 },
 {
   timestamps: {createdAt: 'created_at', updatedAt: 'update_at'}
 }
 );
+
+schema.plugin(paginate)
 
 const Product = model<IProduct, PaginateModel<IProduct>>('Product', schema);
 
