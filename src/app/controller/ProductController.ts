@@ -20,6 +20,20 @@ class ProductController {
     }
   }
 
+  public async getById (req: Request, res: Response): Promise<Response> {
+    try {
+      const id = req.params.id;
+      const body = await ProductService.getById(id)
+      return res.status(200).json(body)
+    } catch (error: any) {
+      return res.status(error.statusCode || 400).json({
+        message: error.name,
+        details: [
+          {message: error.message}
+        ]
+      })
+    }
+  }
 
   public async create (req: Request, res: Response): Promise<Response> {
     try {
