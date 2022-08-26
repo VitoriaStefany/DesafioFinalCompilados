@@ -19,6 +19,10 @@ class ProductRepository {
   public async updatePut (ProductId:string, Payload: IProduct) {
     return ProductSchema.findByIdAndUpdate(ProductId, Payload, {new: true}).select('-tock_control_enabled').select('-bar_codes').select('-_id').select(-'timestamps')
   }
+
+  public async delete (id: string): Promise<void> {
+    await ProductSchema.findByIdAndDelete(id)
+  }
 }
 
 export default new ProductRepository();
