@@ -65,6 +65,22 @@ class ProductController {
       })
     }
   }
+
+  public async delete (req: Request, res: Response): Promise<Response> {
+    try {
+      const _id = req.params.id
+      await ProductService.delete(_id)
+      return res.status(204).json()
+    } catch (error: any) {
+      return res.status(error.statusCode || 500).json({
+        message: error.name,
+        details: [
+          { message: error.message }
+        ]
+      })
+    }
+  }
+
 }
 
 export default new ProductController();
